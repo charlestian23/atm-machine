@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 
+debug_mode = True
+
+
 class ATMDispenser:
     _next_chain: ATMDispenser = None
 
@@ -13,56 +16,91 @@ class ATMDispenser:
 
 class FiftyDollarDispenser(ATMDispenser):
     def withdraw_money(self, money: int):
+        if debug_mode:
+            print("\tEntering $50 process in chain")
         if money >= 50:
             bill_count = money // 50
             remainder = money % 50
             print("ATM withdrawing", bill_count, "$50 bills")
             if remainder > 0:
+                if debug_mode:
+                    print("\tGoing from the $50 process to the next process in the chain")
                 self._next_chain.withdraw_money(remainder)
+            elif debug_mode:
+                print("\tRemainder is 0, end of chain")
         else:
+            if debug_mode:
+                print("\tGoing from the $50 process to the next process in the chain")
             self._next_chain.withdraw_money(money)
 
 
 class TwentyDollarDispenser(ATMDispenser):
     def withdraw_money(self, money: int):
+        if debug_mode:
+            print("\tEntering $20 process in chain")
         if money >= 20:
             bill_count = money // 20
             remainder = money % 20
             print("ATM withdrawing", bill_count, "$20 bills")
             if remainder > 0:
+                if debug_mode:
+                    print("\tGoing from the $20 process to the next process in the chain")
                 self._next_chain.withdraw_money(remainder)
+            elif debug_mode:
+                print("\tRemainder is 0, end of chain")
         else:
+            if debug_mode:
+                print("\tGoing from the $20 process to the next process in the chain")
             self._next_chain.withdraw_money(money)
 
 
 class TenDollarDispenser(ATMDispenser):
     def withdraw_money(self, money: int):
+        if debug_mode:
+            print("\tEntering $10 process in chain")
         if money >= 10:
             bill_count = money // 10
             remainder = money % 10
             print("ATM withdrawing", bill_count, "$10 bills")
             if remainder > 0:
+                if debug_mode:
+                    print("\tGoing from the $10 process to the next process in the chain")
                 self._next_chain.withdraw_money(remainder)
+            elif debug_mode:
+                print("\tRemainder is 0, end of chain")
         else:
+            if debug_mode:
+                print("\tGoing from the $10 process to the next process in the chain")
             self._next_chain.withdraw_money(money)
 
 
 class FiveDollarDispenser(ATMDispenser):
     def withdraw_money(self, money: int):
+        if debug_mode:
+            print("\tEntering $5 process in chain")
         if money >= 5:
             bill_count = money // 5
             remainder = money % 5
             print("ATM withdrawing", bill_count, "$5 bills")
             if remainder > 0:
+                if debug_mode:
+                    print("\tGoing from the $5 process to the next process in the chain")
                 self._next_chain.withdraw_money(remainder)
+            elif debug_mode:
+                print("\tRemainder is 0, end of chain")
         else:
+            if debug_mode:
+                print("\tGoing from the $5 process to the next process in the chain")
             self._next_chain.withdraw_money(money)
 
 
 class OneDollarDispenser(ATMDispenser):
     def withdraw_money(self, money: int):
+        if debug_mode:
+            print("\tEntering $1 process in chain")
         print("ATM withdrawing", money, "$1 bills")
-
+        if debug_mode:
+            print("\tLast process complete, end of chain")
 
 class ATMChain:
     chain = None
